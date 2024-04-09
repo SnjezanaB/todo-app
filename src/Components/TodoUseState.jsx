@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 function TodoVizual() {
   const [todos, setTodos] = useState([]);
@@ -10,33 +10,32 @@ function TodoVizual() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setTodos([...todos, inputValue]);
+    if (!inputValue.trim()) return;
+    const newTodo = {
+      id: Date.now(),
+      text: inputValue,
+    };
+    setTodos([...todos, newTodo]);
     setInputValue("");
   }
 
-  function handleDelete(index) {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
+  function handleDelete(id) {
+    setTodos(todos.filter((todo) => todo.id !== id));
   }
-  function handleDelete(index) {
-    const newTodos = [...todos];
-    newTodos.splice(index, 1);
-    setTodos(newTodos);
-  }
+
   return (
     <div>
       <h1>Todo List</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input type="text" value={inputValue} onChange={handleChange} />
-        <button onClick={handleSubmit}>Add Todo</button>
+        <button type="submit">Add Todo</button>
       </form>
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
+        {todos.map((todo) => (
+          <li key={todo.id}>
             <input type="checkbox" />
-            {todo}
-            <button onClick={() => handleDelete(index)}>Delete</button>
+            {todo.text}
+            <button onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
         ))}
       </ul>
