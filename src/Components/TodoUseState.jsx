@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 function TodoVizual() {
@@ -24,7 +23,9 @@ function TodoVizual() {
       <ul>
         {todos.map((todo) => (
           <li key={todo}>
+            <input type="checkbox" />
             {todo}
+
             <button>Delete</button>
           </li>
         ))}

@@ -2,7 +2,7 @@
   text-align: center;
 }
 .App-logo {
-  height: 40vmin;
+  height: 10vmin;
   pointer-events: none;
 }
 
@@ -35,4 +35,15 @@
 .todo-item p {
   color: #888;
   text-decoration: line-through;
+}
+
+ul {
+  list-style-type: none;
+  text-align: left;
+}
+
+.ListaIzgled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
