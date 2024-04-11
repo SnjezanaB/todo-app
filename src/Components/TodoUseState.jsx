@@ -14,6 +14,7 @@ function TodoVizual() {
     const newTodo = {
       id: Date.now(),
       text: inputValue,
+      check: true,
     };
     setTodos([...todos, newTodo]);
     setInputValue("");
@@ -33,7 +34,7 @@ function TodoVizual() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <input type="checkbox" />
+            <input type="checkbox" checked={todo.check} />
             {todo.text}
             <button onClick={() => handleDelete(todo.id)}>Delete</button>
           </li>
